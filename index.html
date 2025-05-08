@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Green Bull - The Future of Green Crypto</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #27ae60;
+        --secondary: #2ecc71;
+        --dark: #1c3921;
+        --light: #efffef;
+        --accent: #f1c40f;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f9fafb;
+        color: #333;
+        scroll-behavior: smooth;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-dark {
+        background-color: var(--dark);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .btn-primary:hover {
+        background-color: var(--dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--accent);
+        color: var(--dark);
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #e2b607;
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 80vh;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("/api/placeholder/1200/800");
+        background-size: cover;
+        opacity: 0.1;
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .card {
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+      }
+
+      .dexscreener-container {
+        background-color: var(--dark);
+        padding: 1rem 0;
+      }
+
+      .floating {
+        animation: float 5s ease-in-out infinite;
+        will-change: transform;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .bull-logo {
+        max-width: 300px;
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+      }
+
+      .chart-container {
+        position: relative;
+        height: 150px;
+        width: 100%;
+      }
+      .chart-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        fill: none;
+      }
+      .chart-area {
+        fill: var(--primary);
+        opacity: 0.1;
+      }
+
+      .roadmap-container {
+        contain: layout;
+        position: relative;
+      }
+      .roadmap-item {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 2rem;
+      }
+      .roadmap-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+
+      .faq-item {
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .faq-question {
+        cursor: pointer;
+        padding: 1rem 0;
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+      }
+
+      footer {
+        background-color: var(--dark);
+        color: white;
+      }
+
+      .dexscreener-embed {
+        width: 100%;
+        height: 300px;
+        border: none;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* Navigation Styles */
+      .nav-container {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      .nav-links a {
+        position: relative;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s ease;
+      }
+      .nav-links a:hover::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 1rem;
+        width: calc(100% - 2rem);
+        height: 2px;
+        background-color: var(--primary);
+      }
+
+      /* Mobile Menu Styles */
+      .mobile-menu {
+        display: none;
+        transition: transform 0.3s ease-in-out; /* Added transition for smooth animation */
+        transform: translateX(100%);
+        max-width: 280px;
+        width: 100%;
+      }
+      .mobile-menu.active {
+        transform: translateX(0);
+        display: block;
+      }
+
+      /* Media Queries */
+      @media (min-width: 1025px) {
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 1024px) and (min-width: 769px) {
+        /* Tablet view (769px to 1024px) */
+        .hero {
+          min-height: 70vh;
+        }
+        .bull-logo {
+          max-width: 350px;
+        }
+        .hero-content {
+          flex-direction: row;
+          align-items: center;
+          padding: 2rem 0;
+        }
+        .hero-content > div {
+          width: 50%;
+        }
+        .hero-content h1 {
+          font-size: 2.8rem;
+          line-height: 1.3;
+          margin-bottom: 1.5rem;
+        }
+        .hero-content p {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          margin-bottom: 2rem;
+        }
+        .hero-content .flex {
+          gap: 1.2rem;
+          margin-top: 1.5rem;
+        }
+        .grid-cols-4 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-cols-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .nav-links {
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;
+        }
+        .btn-primary,
+        .btn-secondary {
+          padding: 0.6rem 1.8rem;
+        }
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 90vh;
+        }
+        .bull-logo {
+          max-width: 400px;
+        }
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-content > div {
+          width: 100%;
+        }
+        .hero-content h1 {
+          font-size: 2.5rem;
+          line-height: 1.4;
+          margin-bottom: 2rem;
+        }
+        .hero-content p {
+          font-size: 1.25rem;
+          line-height: 1.6;
+          margin-bottom: 2.5rem;
+        }
+        .hero-content .flex {
+          margin-top: 2rem;
+          gap: 1.5rem;
+        }
+        .btn-primary,
+        .btn-secondary {
+          padding: 0.75rem 2.5rem;
+        }
+        .grid-cols-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-cols-3 {
+          grid-template-columns: 1fr;
+        }
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100%;
+          background: white;
+          z-index: 100;
+          box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+          overflow-x: hidden;
+        }
+        .mobile-menu a {
+          display: block;
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #e2e8f0;
+          color: var(--dark);
+          font-weight: 500;
+        }
+        .mobile-menu .btn-primary {
+          margin: 1rem 1.5rem;
+          text-align: center;
+        }
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 99;
+          display: none;
+        }
+        .overlay.active {
+          display: block;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+        .bull-logo {
+          max-width: 350px;
+        }
+        .grid-cols-4 {
+          grid-template-columns: 1fr;
+        }
+        .mobile-menu {
+          max-width: 240px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center nav-container"
+      >
+        <div class="flex items-center">
+          <img
+            src="ggblogo.jpg"
+            alt="Good Green Bull Logo"
+            class="h-10 w-10 mr-2"
+          />
+          <span class="font-bold text-lg text-primary">Good Green Bull</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-6 nav-links">
+          <a href="#about" class="text-gray-700 hover:text-primary">About</a>
+          <a href="#tokenomics" class="text-gray-700 hover:text-primary"
+            >Tokenomics</a
+          >
+          <a href="#how-to-buy" class="text-gray-700 hover:text-primary"
+            >How to Buy</a
+          >
+          <a href="#roadmap" class="text-gray-700 hover:text-primary"
+            >Roadmap</a
+          >
+          <a href="#community" class="text-gray-700 hover:text-primary"
+            >Community</a
+          >
+          <a href="#how-to-buy" class="btn-primary">Buy Now</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-700">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu">
+        <div class="flex justify-end p-4">
+          <button id="close-menu-btn" class="text-2xl text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <a href="#about" class="hover:text-primary">About</a>
+        <a href="#tokenomics" class="hover:text-primary">Tokenomics</a>
+        <a href="#how-to-buy" class="hover:text-primary">How to Buy</a>
+        <a href="#roadmap" class="hover:text-primary">Roadmap</a>
+        <a href="#community" class="hover:text-primary">Community</a>
+        <a href="#how-to-buy" class="btn-primary">Buy Now</a>
+      </div>
+      <div id="overlay" class="overlay"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div
+        class="container mx-auto px-4 py-24 hero-content flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
+            Charging into Green Crypto
+          </h1>
+          <p class="text-lg text-white opacity-90 mb-6">
+            Join Good Green Bull, the eco-friendly memecoin revolutionizing
+            crypto.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#how-to-buy" class="btn-secondary">Buy $GGB</a>
+            <a
+              href="#community"
+              class="bg-white bg-opacity-20 text-white px-6 py-3 rounded-lg hover:bg-opacity-30"
+              >Join Community</a
+            >
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img
+            src="banner.png"
+            alt="Green Bull Mascot"
+            class="bull-logo floating"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Card -->
+    <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Price Performance
+            </h2>
+            <p class="text-gray-600 mb-4">
+              Good Green Bull ($GGB) consistently outperforms market
+              expectations.
+            </p>
+            <div class="flex space-x-6">
+              <div>
+                <p class="text-sm text-gray-500">Contract Address</p>
+                <p class="text-sm font-mono bg-gray-100 p-2 rounded">
+                  0x42069e1CB4Bc5dc2F5999cc8aFD1930aF1c2B84F
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <div class="card p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-gray-800">$GGB Price Chart</h3>
+                <div class="flex space-x-2">
+                  <a
+                    href="https://dexscreener.com/base/0xf58523c1e3b794ba41ef085147f9136c128649de"
+                    target="_blank"
+                    class="px-3 py-1 rounded bg-primary text-white text-sm"
+                  >
+                    View Full Chart
+                  </a>
+                </div>
+              </div>
+              <div class="chart-container">
+                <svg width="100%" height="100%" viewBox="0 0 800 150">
+                  <path
+                    class="chart-line"
+                    d="M0,120 C50,110 100,130 150,100 C200,70 250,90 300,60 C350,30 400,50 450,20 C500,10 550,30 600,20 C650,10 700,5 800,5"
+                  />
+                  <path
+                    class="chart-area"
+                    d="M0,120 C50,110 100,130 150,100 C200,70 250,90 300,60 C350,30 400,50 450,20 C500,10 550,30 600,20 C650,10 700,5 800,5 L800,150 L0,150 Z"
+                  />
+                </svg>
+              </div>
+              <p class="text-sm text-center text-gray-500">
+                For real-time data, refer to DEXScreener
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">
+            About Good Green Bull
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            The eco-friendly memecoin making crypto green again.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card p-6 text-center">
+            <i class="fas fa-leaf text-primary text-3xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Eco-Friendly</h3>
+            <p class="text-gray-600">
+              2% of transaction fees support environmental causes.
+            </p>
+          </div>
+          <div class="card p-6 text-center">
+            <i class="fas fa-shield-alt text-primary text-3xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">
+              Secure & Audited
+            </h3>
+            <p class="text-gray-600">
+              Smart contract audited by top blockchain firms.
+            </p>
+          </div>
+          <div class="card p-6 text-center">
+            <i class="fas fa-users text-primary text-3xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">
+              Community Driven
+            </h3>
+            <p class="text-gray-600">
+              Community votes on major project decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics" class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Tokenomics</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Sustainable growth for $GGB.
+          </p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2 card p-6">
+            <h3 class="font-bold text-xl mb-4 text-gray-800">Token Details</h3>
+            <div class="space-y-2 text-gray-600">
+              <div class="flex justify-between">
+                <span>Token Name</span
+                ><span class="font-bold">Good Green Bull</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Symbol</span><span class="font-bold">$GGB</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Total Supply</span><span class="font-bold">1T</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Circulating Supply</span
+                ><span class="font-bold">780B</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Blockchain</span><span class="font-bold">Ethereum</span>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center">
+              <span class="text-gray-600 mr-2">Contract:</span>
+              <span
+                class="flex-1 bg-gray-100 rounded px-2 py-1 text-xs font-mono"
+                >0x42069e1CB4Bc5dc2F5999cc8aFD1930aF1c2B84F</span
+              >
+              <button class="ml-2 text-primary">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <h3 class="font-bold text-xl mb-4 text-gray-800">
+              Token Allocation
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Public Sale</span><span class="font-bold">40%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-primary h-2 rounded-full"
+                    style="width: 40%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Liquidity Pool</span><span class="font-bold">30%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-blue-500 h-2 rounded-full"
+                    style="width: 30%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Team & Development</span
+                  ><span class="font-bold">15%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-yellow-500 h-2 rounded-full"
+                    style="width: 15%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Marketing</span><span class="font-bold">10%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-purple-500 h-2 rounded-full"
+                    style="width: 10%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Environmental Fund</span
+                  ><span class="font-bold">5%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-red-500 h-2 rounded-full"
+                    style="width: 5%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Buy Section -->
+    <section id="how-to-buy" class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">How to Buy $GGB</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Join the Good Green Bull community in 4 steps.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="card p-6 text-center">
+            <i class="fas fa-wallet text-primary text-2xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Step 1</h3>
+            <p class="text-gray-600">Set up a MetaMask or compatible wallet.</p>
+          </div>
+          <div class="card p-6 text-center">
+            <i class="fab fa-ethereum text-primary text-2xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Step 2</h3>
+            <p class="text-gray-600">Buy ETH and transfer to your wallet.</p>
+          </div>
+          <div class="card p-6 text-center">
+            <i class="fas fa-exchange-alt text-primary text-2xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Step 3</h3>
+            <p class="text-gray-600">Swap ETH for $GGB on Uniswap.</p>
+          </div>
+          <div class="card p-6 text-center">
+            <i class="fas fa-check-circle text-primary text-2xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Step 4</h3>
+            <p class="text-gray-600">Set 7-10% slippage and confirm.</p>
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <a href="https://app.uniswap.org" target="_blank" class="btn-primary">
+            Buy on Uniswap <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="py-12 bg-gray-50 roadmap-container">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Roadmap</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our path to a greener crypto future.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="relative">
+            <div
+              class="absolute left-1.5 top-0 bottom-0 w-1 bg-primary bg-opacity-30"
+            ></div>
+            <div class="roadmap-item">
+              <div class="card p-6">
+                <span
+                  class="inline-block px-2 py-1 rounded bg-green-100 text-green-600 text-sm mb-4"
+                  >Q1 2025 - Done</span
+                >
+                <h3 class="font-bold text-lg mb-2 text-gray-800">
+                  Phase 1: Launch
+                </h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>Smart
+                    contract audited
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i
+                    >Website & socials launched
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i
+                    >Uniswap DEX offering
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>5,000
+                    holders
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="card p-6">
+                <span
+                  class="inline-block px-2 py-1 rounded bg-blue-100 text-blue-600 text-sm mb-4"
+                  >Q3 2025</span
+                >
+                <h3 class="font-bold text-lg mb-2 text-gray-800">
+                  Phase 3: Expansion
+                </h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>Cross-chain
+                    bridge
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>NFT
+                    marketplace
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i
+                    >Environmental partnerships
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>25,000
+                    holders
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute left-1.5 top-0 bottom-0 w-1 bg-primary bg-opacity-30"
+            ></div>
+            <div class="roadmap-item">
+              <div class="card p-6">
+                <span
+                  class="inline-block px-2 py-1 rounded bg-yellow-100 text-yellow-600 text-sm mb-4"
+                  >Q2 2025 - In Progress</span
+                >
+                <h3 class="font-bold text-lg mb-2 text-gray-800">
+                  Phase 2: Growth
+                </h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i
+                    >CoinMarketCap listed
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-sync-alt text-yellow-500 mr-2"></i>First
+                    CEX listing
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>Staking
+                    platform
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i
+                    >Environmental funding
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="card p-6">
+                <span
+                  class="inline-block px-2 py-1 rounded bg-blue-100 text-blue-600 text-sm mb-4"
+                  >Q4 2025</span
+                >
+                <h3 class="font-bold text-lg mb-2 text-gray-800">
+                  Phase 4: Ecosystem
+                </h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>GGB DEX
+                    launch
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>Mobile
+                    wallet app
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>Green
+                    blockchain partnership
+                  </li>
+                  <li class="flex items-center">
+                    <i class="far fa-circle text-gray-400 mr-2"></i>50,000
+                    holders
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">
+            Join Our Community
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Be part of the Good Green Bull herd.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <a href="#" class="card p-6 text-center">
+            <i class="fab fa-telegram text-blue-500 text-4xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Telegram</h3>
+            <p class="text-gray-600 text-sm">Join 15k+ members for updates.</p>
+          </a>
+          <a href="#" class="card p-6 text-center">
+            <i class="fab fa-twitter text-blue-400 text-4xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Twitter</h3>
+            <p class="text-gray-600 text-sm">
+              Follow for news and announcements.
+            </p>
+          </a>
+          <a href="#" class="card p-6 text-center">
+            <i class="fab fa-discord text-indigo-600 text-4xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Discord</h3>
+            <p class="text-gray-600 text-sm">Join our community server.</p>
+          </a>
+          <a href="#" class="card p-6 text-center">
+            <i class="fab fa-reddit-alien text-red-500 text-4xl mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Reddit</h3>
+            <p class="text-gray-600 text-sm">Share memes and strategies.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">FAQs</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            All about Good Green Bull.
+          </p>
+        </div>
+        <div class="max-w-2xl mx-auto">
+          <div class="faq-item active">
+            <div class="faq-question flex justify-between items-center">
+              <h3 class="font-bold text-lg text-gray-800">
+                What is Good Green Bull?
+              </h3>
+              <i class="fas fa-chevron-down text-primary"></i>
+            </div>
+            <div class="faq-answer pt-2 text-gray-600 text-sm">
+              <p>
+                $GGB is a memecoin on Ethereum focused on sustainability, with
+                2% of fees supporting green initiatives.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question flex justify-between items-center">
+              <h3 class="font-bold text-lg text-gray-800">
+                How do I buy $GGB?
+              </h3>
+              <i class="fas fa-chevron-down text-primary"></i>
+            </div>
+            <div class="faq-answer pt-2 text-gray-600 text-sm">
+              <p>
+                Buy on Uniswap with ETH, set 7-10% slippage, and verify the
+                contract address.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center mb-4 md:mb-0">
+            <img
+              src="ggblogo.jpg"
+              alt="Good Green Bull Logo"
+              class="h-10 w-10 mr-2"
+            />
+            <span class="font-bold text-lg text-white">Good Green Bull</span>
+          </div>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-green-300"
+              ><i class="fab fa-telegram text-xl"></i
+            ></a>
+            <a href="#" class="text-white hover:text-green-300"
+              ><i class="fab fa-twitter text-xl"></i
+            ></a>
+            <a href="#" class="text-white hover:text-green-300"
+              ><i class="fab fa-discord text-xl"></i
+            ></a>
+            <a href="#" class="text-white hover:text-green-300"
+              ><i class="fab fa-reddit-alien text-xl"></i
+            ></a>
+          </div>
+        </div>
+        <p class="text-center text-gray-500 text-sm mt-6">
+          © 2025 Good Green Bull. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // FAQ Toggle
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const item = question.parentNode;
+          const isActive = item.classList.contains("active");
+          document.querySelectorAll(".faq-item").forEach((i) => {
+            i.classList.remove("active");
+            i.querySelector(".faq-answer").style.maxHeight = null;
+          });
+          if (!isActive) {
+            item.classList.add("active");
+            const answer = item.querySelector(".faq-answer");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+
+      const firstFaq = document.querySelector(".faq-item");
+      if (firstFaq) {
+        const firstAnswer = firstFaq.querySelector(".faq-answer");
+        firstAnswer.style.maxHeight = firstAnswer.scrollHeight + "px";
+      }
+
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const overlay = document.getElementById("overlay");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      overlay.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+          overlay.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+    </script>
+  </body>
+</html>
